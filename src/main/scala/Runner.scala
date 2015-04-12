@@ -1,6 +1,7 @@
+import warmup.UtopianTree
 
-object Runner {
+object Runner extends UtopianTree{
   def main(args : Array[String]) = {
-
+    solve()
   }
 }
