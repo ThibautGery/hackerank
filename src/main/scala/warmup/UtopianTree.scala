@@ -1,19 +1,25 @@
 package warmup
 
+import scala.annotation.tailrec
 import scala.io.StdIn
 
 trait UtopianTree {
   def solve() = {
-    val n  = StdIn.readInt()
-    (1 to n).map( i => growEachTree(StdIn.readInt()) ).foreach(println)
+    val n = StdIn.readInt()
+    (1 to n).map(i => growEachTree(StdIn.readInt())).foreach(println)
   }
 
   def growEachTree(cycle: Int) = {
-    var height = 1
+    val initialHeight = 1
 
-    (1 to cycle).foreach({
-      i => if (i % 2 == 0) height = height + 1 else height = height*2
-    })
-    height
+    @tailrec
+    def growEachTree(curCycle: Int, maxCycle: Int , acc: Int): Int = {
+      if(curCycle == maxCycle) return acc
+      curCycle % 2 match {
+        case 0 => growEachTree(curCycle + 1,maxCycle, acc * 2)
+        case 1 => growEachTree(curCycle + 1,maxCycle, acc + 1)
+      }
+    }
+    growEachTree(0, cycle, initialHeight)
   }
 }

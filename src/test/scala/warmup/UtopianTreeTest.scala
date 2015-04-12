@@ -21,4 +21,10 @@ class UtopianTreeTest extends mutable.SpecificationWithJUnit with UtopianTree{
       growEachTree(4) === 7
     }
   }
+
+  "growEachTree with 3 cycle" should {
+    "mesure 6 meters" in {
+      growEachTree(3) === 6
+    }
+  }
 }
