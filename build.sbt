@@ -23,6 +23,8 @@ libraryDependencies <++= version { version =>
 }
 
 
+parallelExecution in Test := false
+
 logBuffered := false
 
 mainClass in Compile := Some("Runner.Main")

@@ -35,6 +35,12 @@ class MaximizingXorTest extends mutable.SpecificationWithJUnit with MaximazingXo
     }
   }
 
+  "xor between 60 and 13" should {
+    "return 49" in {
+      xor(60, 13) === 49
+    }
+  }
+
   "xor between 11 and 12" should {
     "return 7" in {
       xor(11, 12) === 7

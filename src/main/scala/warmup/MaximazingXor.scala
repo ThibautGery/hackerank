@@ -4,20 +4,26 @@ import scala.io.StdIn
 
 trait MaximazingXor {
 
-  def maxXor(l: Int, r: Int): Int = {
+  def maxXor(l: Int, r: Int): Long = {
 
-    var max : Int = 0
-    for( a <- l to r;
-        b <- l to r) {
-      val tmp = xor(a, b)
-      if(tmp > max)
-        max = tmp
-    }
-    max
+    val xors = for (a <- l to r;
+                    b <- l to r)
+      yield xor(a, b)
+
+    val test = for (a <- l to r;
+                    b <- l to r)
+      yield (a, b)
+
+    max(xors)
   }
 
-  def xor(l: Int, r: Int): Int = {
-    l.toByte ^ r.toByte
+  def max(xs: IndexedSeq[Long]) = {
+    if (xs.isEmpty) throw new NoSuchElementException
+    xs.reduceLeft((x, y) => if (x > y) x else y)
+  }
+
+  def xor(l: Int, r: Int): Long = {
+    l ^ r
   }
 
   def solve() {
